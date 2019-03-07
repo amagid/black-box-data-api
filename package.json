@@ -1,18 +1,13 @@
 {
-  "name": "boilerplate",
+  "name": "blackboxdata",
   "version": "1.0.0",
-  "description": "Node Project Boilerplate",
+  "description": "Black Box Data API for Rockwell Class",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "test": "mocha ./tests"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/amagid/bigpie-cir-automation-backend.git"
-  },
   "author": "Aaron Magid",
-  "homepage": "https://github.com/amagid/boilerplate#readme",
   "dependencies": {
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
