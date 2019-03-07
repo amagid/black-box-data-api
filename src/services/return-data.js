@@ -8,10 +8,10 @@ const config = require('../../config').get();
 function returnData(data, err) {
     return new Promise((resolve) => {
         setTimeout(
-            resolve(
+            () => resolve(
                 JSON.parse(JSON.stringify(data))
             ),
-            Math.random * config.db.maxDelay
+            parseInt(Math.random() * config.db.maxDelay)
         );
     });
 }
