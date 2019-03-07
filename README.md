@@ -47,7 +47,18 @@ The websocket system is designed to mimic an RPC-like format. Open a websocket t
 }
 ```
 
-**Available Actions**
+**Responses:** The websocket system will respond to commands in the following format:
+
+```json
+{
+    "type": "userActionResponse | projectActionResponse",
+    "result": {
+        "JSON response": "from the server"
+    }
+}
+```
+
+**Available Actions for commands**
 ```bash
 USERS:
 getAll
@@ -65,8 +76,10 @@ update
 delete
 ```
 
-**EXAMPLE COMMAND: Update user's first name to Harold**
+**EXAMPLE COMMAND: Update user's first name to Harold. Will log "{ type: 'userActionResponse', result: { message: 'User updated successfully' } }" when complete.**
 ```javascript
+var websocket = new WebSocket('ws://localhost:3000');
+websocket.onmessage = (message) => { console.log(JSON.parse(message.data)); };
 websocket.send(JSON.stringify({
     "entityType": "user",
     "userId": 3,
