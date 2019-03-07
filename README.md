@@ -26,3 +26,7 @@ npm run test
 ## Database
 
 The "database" for this application is really just a few JSON files which are **never modified**. This way, the server database is refreshed on every restart. Instead, the "database" service maintains live in-memory references to the JSON which is loaded and parsed on startup. All API actions work with these in-memory references to appear to function like a real database without us having to install one.
+
+## Configuration
+
+Application configuration can be found in the **config/development.json** file. Currently there are two properties. **app.port** determines what port the application listens on, and **db.maxDelay** determines the maximum delay in milliseconds that the system might wait for before responding. The database system waits a random amount of time from 0 to db.maxDelay milliseconds before responding.
