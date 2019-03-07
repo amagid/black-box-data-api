@@ -30,3 +30,49 @@ The "database" for this application is really just a few JSON files which are **
 ## Configuration
 
 Application configuration can be found in the **config/development.json** file. Currently there are two properties. **app.port** determines what port the application listens on, and **db.maxDelay** determines the maximum delay in milliseconds that the system might wait for before responding. The database system waits a random amount of time from 0 to db.maxDelay milliseconds before responding.
+
+## Websocket Communication
+
+The websocket system is designed to mimic an RPC-like format. Open a websocket to localhost:3000 and send stringified JSON messages with the following format:
+
+```json
+{
+    "entityType": "user | project",
+    "userId": 0,
+    "projectId": 0
+    "action": "one of the below actions",
+    "data": {
+        "arguments": "to the command as JSON"
+    }
+}
+```
+
+**Available Actions**
+```bash
+USERS:
+getAll
+getById
+create
+update
+delete
+
+PROJECTS:
+getAll
+getById
+getByUserId
+create
+update
+delete
+```
+
+**EXAMPLE COMMAND: Update user's first name to Harold**
+```javascript
+websocket.send(JSON.stringify({
+    "entityType": "user",
+    "userId": 3,
+    "action": "update",
+    "data": {
+        "fname": "Harold"
+    }
+}));
+```
