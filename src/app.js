@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const socketIO = require('socket.io');
 
-const responsePromise = require('./middlewares/response-promise');
-
 const config = require('../config').get();
 const logger = require('./services/logger');
 const routes = require('./routes');
@@ -34,7 +32,6 @@ function setUpAPI() {
     app.use(bodyParser.urlencoded({
         extended: false
     }));
-    app.use(responsePromise);
     //Mount routes
     const router = express.Router();
     routes(router);

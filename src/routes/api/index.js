@@ -1,3 +1,5 @@
+const respond = require('../../middlewares/respond');
+
 module.exports = function mountAPI(router) {
-    router.get('/', (req, res) => res.promise('Up and running!'));
+    router.get('/', respond((req, res) => 'Up and running!'));
 };
