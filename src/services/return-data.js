@@ -9,7 +9,7 @@ function returnData(data, err) {
     return new Promise((resolve) => {
         setTimeout(
             resolve(
-                Object.assign({}, data)
+                JSON.parse(JSON.stringify(data))
             ),
             Math.random * config.db.maxDelay
         );

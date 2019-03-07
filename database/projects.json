@@ -1,3 +1,33 @@
-{
-    "projects": true
-}
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "name": "Test Project",
+        "deadline": "2019-03-06 23:02:37.000Z"
+    }, {
+        "id": 2,
+        "userId": 2,
+        "name": "Example Project",
+        "deadline": "2019-03-07 12:08:21.000Z"
+    }, {
+        "id": 3,
+        "userId": 2,
+        "name": "Another Example Project",
+        "deadline": "2019-03-06 18:32:03.000Z"
+    }, {
+        "id": 4,
+        "userId": 4,
+        "name": "New Software Development",
+        "deadline": "2019-03-07 20:41:02.000Z"
+    }, {
+        "id": 5,
+        "userId": 4,
+        "name": "Honestly, does the name matter?",
+        "deadline": "2019-03-05 03:12:30.000Z"
+    }, {
+        "id": 6,
+        "userId": 4,
+        "name": "Here's another project",
+        "deadline": "2019-03-06 19:13:52.000Z"
+    }
+]

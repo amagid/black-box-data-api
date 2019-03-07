@@ -1,3 +1,23 @@
-{
-    "users": true
-}
+[
+    {
+        "id": 1,
+        "fname": "Test",
+        "lname": "Testerson"
+    }, {
+        "id": 2,
+        "fname": "John",
+        "lname": "Smith"
+    }, {
+        "id": 3,
+        "fname": "Jane",
+        "lname": "Doe"
+    }, {
+        "id": 4,
+        "fname": "Another",
+        "lname": "Name"
+    }, {
+        "id": 5,
+        "fname": "Someone",
+        "lname": "Else"
+    }
+]
