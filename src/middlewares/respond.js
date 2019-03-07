@@ -36,6 +36,9 @@ function respond(handler) {
         // Process the Promise-wrapped response
         return response
             .then(result => {
+                if (typeof result === 'string') {
+                    result = { message: result };
+                }
                 logger.info({ message: "Request Handled Successfully", status: 200, additionalData: { route: req.originalUrl.split('?')[0], data: { query: Object.keys(req.query).length ? req.query : "No Query Data", params: Object.keys(req.params).length ? req.params : "No URL Param Data", body: Object.keys(req.body).length ? req.body : "No Body Data" }, user: !req.user || !Object.keys(req.user).length ? "Unidentified User" : req.user } });
                 res.status(200).json(result);
             })

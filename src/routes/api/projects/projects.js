@@ -1,4 +1,5 @@
 const Projects = require('../../../models/Projects');
+const APIError = require('../../../APIError');
 
 function getAll() {
     return Projects.getAll()
@@ -30,8 +31,41 @@ function getByUserId(userId) {
         });
 }
 
+function createProject(projectData) {
+    return Projects.createProject(projectData)
+        .then(result => {
+            return result;
+        })
+        .catch(err => {
+            throw APIError(500, 'Project Creation Failed', err);
+        });
+}
+
+function updateProject(projectId, updates) {
+    return Projects.updateProject(projectId, updates)
+        .then(result => {
+            return result;
+        })
+        .catch(err => {
+            throw APIError(404, 'Project Not Found', err);
+        });
+}
+
+function deleteProject(projectId) {
+    return Projects.deleteProject(projectId)
+        .then(result => {
+            return result;
+        })
+        .catch(err => {
+            throw APIError(404, 'Project Not Found', err);
+        });
+}
+
 module.exports = {
     getAll,
     getById,
-    getByUserId
+    getByUserId,
+    createProject,
+    updateProject,
+    deleteProject
 };

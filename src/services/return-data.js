@@ -5,12 +5,14 @@ const config = require('../../config').get();
  * 
  * @param {*} data 
  */
-function returnData(data, err) {
-    return new Promise((resolve) => {
+function returnData(data) {
+    return new Promise((resolve, reject) => {
+        const resolverFunction = data instanceof Error ? 
+            () => reject(data) :
+            () => resolve(JSON.parse(JSON.stringify(data)))
+            
         setTimeout(
-            () => resolve(
-                JSON.parse(JSON.stringify(data))
-            ),
+            resolverFunction,
             parseInt(Math.random() * config.db.maxDelay)
         );
     });
