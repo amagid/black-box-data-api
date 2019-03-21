@@ -1,3 +1,6 @@
+// This class provides a simple way to define uniform errors to be returned by
+// the API to the client.
+
 'use strict';
 module.exports = (status, message) => { return new APIError(status, message) };
 

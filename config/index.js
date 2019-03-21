@@ -1,3 +1,7 @@
+// This is the main configuration module for the project. It loads the config
+// data from development.json and production.json and makes that available to
+// other modules that import it.
+
 'use strict';
 const dev = require('./development');
 const prod = require('./production');
@@ -17,6 +21,7 @@ function get() {
     }
 }
 
+// Export the get() method for use by other modules
 module.exports = {
     get
 };

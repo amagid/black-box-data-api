@@ -36,13 +36,17 @@ function respond(handler) {
         // Process the Promise-wrapped response
         return response
             .then(result => {
+                // Process the result from the server and format it to be sent to the client
                 if (typeof result === 'string') {
                     result = { message: result };
                 }
                 logger.info({ message: "Request Handled Successfully", status: 200, additionalData: { route: req.originalUrl.split('?')[0], data: { query: Object.keys(req.query).length ? req.query : "No Query Data", params: Object.keys(req.params).length ? req.params : "No URL Param Data", body: Object.keys(req.body).length ? req.body : "No Body Data" }, user: !req.user || !Object.keys(req.user).length ? "Unidentified User" : req.user } });
+                // Actually send the request to the client with a 200 status code (OK)
                 res.status(200).json(result);
             })
             .catch(error => {
+                // If there was an error, log it and then send a sanitized
+                // message back to the client
                 if (error.status === 500) {
                     logger.error({ message: error.message, status: error.status, additionalData: { rawError: error, route: req.originalUrl.split('?')[0], data: { query: Object.keys(req.query).length ? req.query : "No Query Data", params: Object.keys(req.params).length ? req.params : "No URL Param Data", body: Object.keys(req.body).length ? req.body : "No Body Data" }, user: !req.user || !Object.keys(req.user).length ? "Unidentified User" : req.user } });
                 } else {
@@ -51,6 +55,10 @@ function respond(handler) {
                 res.status(error.status || error.statusCode || 500).json({ message: (error.status && error.status !== 500) ? error.message : 'Unknown Error', data: error.additionalData ? error.additionalData.send : undefined });
             })
             .catch(error => {
+                // Just in case, if there was an error in the above code for
+                // any reason, then something really bad happened, so log
+                // as much data as we can about it and then say "Unknown Error"
+                // to the client. with a 500 status code (Internal Server Error)
                 logger.error({ message: error.message || "Unknown Error", status: error.status || error.statusCode || 500, additionalData: { rawError: error, route: req.originalUrl.split('?')[0], data: { query: Object.keys(req.query).length ? req.query : "No Query Data", params: Object.keys(req.params).length ? req.params : "No URL Param Data", body: Object.keys(req.body).length ? req.body : "No Body Data" }, user: !req.user || !Object.keys(req.user).length ? "Unidentified User" : req.user } });
                 res.status(500).json({ message: 'Unknown Error' });
         });
